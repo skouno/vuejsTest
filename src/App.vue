@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-        <Home v-if="!isLogin"></Home>
+        <Home v-if="!isLogin"></Home> <!--条件付きレンダリング-->
         <Editor v-if="isLogin" :user="userData"></Editor>
   </div>
 </template>
 
 <script>
+// 別のコンポーネントを相対パスでimportする。
 import Home from "./components/Home.vue";
 import Editor from "./components/Editor.vue";
 
@@ -13,7 +14,7 @@ export default {
   name: 'app',
   data() {
     return {
-      isLogin: false,
+      isLogin: false, // ログイン状態を判別 → 条件付きレンダリング
       userData: null
     };
   },
@@ -29,6 +30,8 @@ export default {
       };
     });
   },
+  // template内で利用したいコンポーネントを {tag名: vueファイル}で定義する。
+  // template内でHTMLタグのような形で定義したコンポーネントを読み出せる。
   components: {
     Home: Home,
     Editor: Editor
